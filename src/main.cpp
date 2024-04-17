@@ -120,6 +120,18 @@ int main(int argc, char const* argv[]) {
 		player.Update();
 		robot.Update(ball.y);
 
+		Rectangle ballRect = { ball.x, ball.y, ball.w, ball.h };
+		Rectangle playerRect = { player.x, player.y, player.w, player.h };
+		Rectangle robotRect = { robot.x, robot.y, robot.w, robot.h };
+
+		if (CheckCollisionRecs(ballRect, playerRect)) {
+			ball.speed_x *= -1;
+		}
+
+		if (CheckCollisionRecs(ballRect, robotRect)) {
+			ball.speed_x *= -1;
+		}
+
 		ClearBackground(BLACK);
 		ball.Draw();
 		player.Draw();
