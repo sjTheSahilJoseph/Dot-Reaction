@@ -4,10 +4,10 @@ class Ball {
 	public:
 		float x;
 		float y;
-		int speed_x;
-		int speed_y;
-		int w;
-		int h;
+		float speed_x;
+		float speed_y;
+		float w;
+		float h;
 		
 		void Draw() {
 		DrawRectangle(x, y, w, h, WHITE);
@@ -16,10 +16,33 @@ class Ball {
 		void Update() {
 			x += speed_x;
 			y += speed_y;
+
+			float radius = (float) (w+h) / 4;
+			if (y + radius >= GetScreenHeight() || y - radius <= 0 ) {
+				speed_y *= -1;
+			}
+			if (x + radius >= GetScreenWidth() || x - radius <= 0 ) {
+				speed_x *= -1;
+			}
+		}
+};
+
+class Player {
+	public:
+		float x;
+		float y;
+		float w;
+		float h;
+		int speed;
+
+		void Draw() {
+			DrawRectangle(x, y, w, h, WHITE);
 		}
 };
 
 Ball ball;
+
+Player player;
 
 int main(int argc, char const* argv[]) {
 	// Screen Size
@@ -33,10 +56,16 @@ int main(int argc, char const* argv[]) {
 
 	ball.w = 10;
 	ball.h = 10;
-	ball.x = screenWidth/2;
-	ball.y = screenHeight/2;
-	ball.speed_x = 5;
-	ball.speed_y = 5;
+	ball.x = (float)screenWidth/2;
+	ball.y = (float)screenHeight/2;
+	ball.speed_x = 7;
+	ball.speed_y = 7;
+
+	player.w = 20;
+	player.h = 100;
+	player.x = screenWidth - player.w - 10;
+	player.y = (screenHeight/2) - (player.h / 2);
+	player.speed = 6;
     
     while (!WindowShouldClose()) {
         BeginDrawing();
@@ -46,8 +75,7 @@ int main(int argc, char const* argv[]) {
 		ClearBackground(BLACK);
 		ball.Draw();
 		DrawRectangle(10, (screenHeight/2 - 50), 20, 100, WHITE);
-		DrawRectangle((screenWidth - 20 - 10), (screenHeight/2 - 50), 20, 100, WHITE);
-
+		player.Draw();
         EndDrawing();
     }
     
