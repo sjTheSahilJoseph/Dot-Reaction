@@ -16,7 +16,7 @@ int main(int argc, char const* argv[]) {
 		ClearBackground(BLACK);
 
 		DrawRectangle(screenWidth/2, screenHeight/2, 10, 10, WHITE);
-		DrawRectangle(0, 0, 20, 100, WHITE);
+		DrawRectangle(0, (screenHeight/2 - 50), 20, 100, WHITE);
 
         EndDrawing();
     }
