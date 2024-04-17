@@ -38,6 +38,15 @@ class Player {
 		void Draw() {
 			DrawRectangle(x, y, w, h, WHITE);
 		}
+
+		void Update() {
+			if (IsKeyDown(KEY_K) || IsKeyDown(KEY_UP)) {
+				y = y - speed;
+			}
+			if (IsKeyDown(KEY_J) || IsKeyDown(KEY_DOWN)) {
+				y = y + speed;
+			}
+		}
 };
 
 Ball ball;
@@ -65,12 +74,13 @@ int main(int argc, char const* argv[]) {
 	player.h = 100;
 	player.x = screenWidth - player.w - 10;
 	player.y = (screenHeight/2) - (player.h / 2);
-	player.speed = 6;
+	player.speed = 20;
     
     while (!WindowShouldClose()) {
         BeginDrawing();
 
 		ball.Update();
+		player.Update();
 
 		ClearBackground(BLACK);
 		ball.Draw();
