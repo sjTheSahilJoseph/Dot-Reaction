@@ -1,15 +1,23 @@
 #include <raylib.h>
 
 int main(int argc, char const* argv[]) {
+	// Screen Size
 	const int screenWidth = 1280;
     const int screenHeight = 800;
 
     InitWindow(screenWidth, screenHeight, "SJ's Dot-Reaction");
+
+	// FPS
+	SetTargetFPS(1000);
     
     while (!WindowShouldClose()) {
         BeginDrawing();
-        ClearBackground(RAYWHITE);
-        DrawText("SJ's Dot-Reaction", 10, 10, 20, DARKGRAY);
+
+		ClearBackground(BLACK);
+
+		DrawRectangle(screenWidth/2, screenHeight/2, 10, 10, WHITE);
+		DrawRectangle(0, 0, 20, 100, WHITE);
+
         EndDrawing();
     }
     
