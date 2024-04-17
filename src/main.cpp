@@ -12,6 +12,11 @@ class Ball {
 		void Draw() {
 		DrawRectangle(x, y, w, h, WHITE);
 		}
+
+		void Update() {
+			x += speed_x;
+			y += speed_y;
+		}
 };
 
 Ball ball;
@@ -24,7 +29,7 @@ int main(int argc, char const* argv[]) {
     InitWindow(screenWidth, screenHeight, "SJ's Dot-Reaction");
 
 	// FPS
-	SetTargetFPS(1000);
+	SetTargetFPS(60);
 
 	ball.w = 10;
 	ball.h = 10;
@@ -35,6 +40,8 @@ int main(int argc, char const* argv[]) {
     
     while (!WindowShouldClose()) {
         BeginDrawing();
+
+		ball.Update();
 
 		ClearBackground(BLACK);
 		ball.Draw();
