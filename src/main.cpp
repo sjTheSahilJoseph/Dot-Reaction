@@ -43,8 +43,17 @@ class Player {
 			if (IsKeyDown(KEY_K) || IsKeyDown(KEY_UP)) {
 				y = y - speed;
 			}
+
 			if (IsKeyDown(KEY_J) || IsKeyDown(KEY_DOWN)) {
 				y = y + speed;
+			}
+
+			if (y <= 0) {
+				y = 0;
+			}
+
+			if (y + h >= GetScreenHeight()) {
+				y = GetScreenHeight() - h;
 			}
 		}
 };
