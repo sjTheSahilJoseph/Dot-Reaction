@@ -72,8 +72,8 @@ int main(int argc, char const* argv[]) {
 
 	player.w = 20;
 	player.h = 100;
-	player.x = screenWidth - player.w - 10;
-	player.y = (screenHeight/2) - (player.h / 2);
+	player.x = 10;
+	player.y = (float)((float)screenHeight/2 - 50);
 	player.speed = 20;
     
     while (!WindowShouldClose()) {
@@ -84,7 +84,7 @@ int main(int argc, char const* argv[]) {
 
 		ClearBackground(BLACK);
 		ball.Draw();
-		DrawRectangle(10, (screenHeight/2 - 50), 20, 100, WHITE);
+		DrawRectangle((screenWidth - 20 - 10), (screenHeight/2 - 50), 20, 100, WHITE);
 		player.Draw();
         EndDrawing();
     }
