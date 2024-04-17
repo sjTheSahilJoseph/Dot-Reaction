@@ -62,15 +62,15 @@ class Player {
 		}
 };
 
-class RobotOpponent : public Player {
+class Player2_Opponent : public Player {
 
 	public:
 		void Update(float ball_y) {
-			if (y + h/2 > ball_y) {
+			if (IsKeyDown(KEY_W)) {
 				y = y - speed;
 			}
 
-			if (y + h/2 <= ball_y) {
+			if (IsKeyDown(KEY_S)) {
 				y = y + speed;
 			}
 
@@ -82,7 +82,7 @@ Ball ball;
 
 Player player;
 
-RobotOpponent robot;
+Player2_Opponent player2;
 
 int main(int argc, char const* argv[]) {
 	// Screen Size
@@ -107,35 +107,35 @@ int main(int argc, char const* argv[]) {
 	player.y = (float)((float)screenHeight/2 - 50);
 	player.speed = 20;
     
-	robot.w = 20;
-	robot.h = 100;
-	robot.x = (screenWidth - 20 - 10);
-	robot.y = (float)((float)screenHeight/2 - robot.h/2);
-	robot.speed = 20;
+	player2.w = 20;
+	player2.h = 100;
+	player2.x = (screenWidth - 20 - 10);
+	player2.y = (float)((float)screenHeight/2 - player2.h/2);
+	player2.speed = 20;
 
     while (!WindowShouldClose()) {
         BeginDrawing();
 
 		ball.Update();
 		player.Update();
-		robot.Update(ball.y);
+		player2.Update(ball.y);
 
 		Rectangle ballRect = { ball.x, ball.y, ball.w, ball.h };
 		Rectangle playerRect = { player.x, player.y, player.w, player.h };
-		Rectangle robotRect = { robot.x, robot.y, robot.w, robot.h };
+		Rectangle player2Rect = { player2.x, player2.y, player2.w, player2.h };
 
 		if (CheckCollisionRecs(ballRect, playerRect)) {
 			ball.speed_x *= -1;
 		}
 
-		if (CheckCollisionRecs(ballRect, robotRect)) {
+		if (CheckCollisionRecs(ballRect, player2Rect)) {
 			ball.speed_x *= -1;
 		}
 
 		ClearBackground(BLACK);
 		ball.Draw();
 		player.Draw();
-		robot.Draw();
+		player2.Draw();
         EndDrawing();
     }
     
