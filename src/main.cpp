@@ -28,6 +28,16 @@ class Ball {
 };
 
 class Player {
+	protected:
+		void LimitMovement() {
+			if (y <= 0) {
+				y = 0;
+			}
+
+			if (y + h >= GetScreenHeight()) {
+				y = GetScreenHeight() - h;
+			}
+		}
 	public:
 		float x;
 		float y;
@@ -48,19 +58,31 @@ class Player {
 				y = y + speed;
 			}
 
-			if (y <= 0) {
-				y = 0;
+			LimitMovement();
+		}
+};
+
+class RobotOpponent : public Player {
+
+	public:
+		void Update(float ball_y) {
+			if (y + h/2 > ball_y) {
+				y = y - speed;
 			}
 
-			if (y + h >= GetScreenHeight()) {
-				y = GetScreenHeight() - h;
+			if (y + h/2 <= ball_y) {
+				y = y + speed;
 			}
+
+			LimitMovement();
 		}
 };
 
 Ball ball;
 
 Player player;
+
+RobotOpponent robot;
 
 int main(int argc, char const* argv[]) {
 	// Screen Size
@@ -85,16 +107,23 @@ int main(int argc, char const* argv[]) {
 	player.y = (float)((float)screenHeight/2 - 50);
 	player.speed = 20;
     
+	robot.w = 20;
+	robot.h = 100;
+	robot.x = (screenWidth - 20 - 10);
+	robot.y = (float)((float)screenHeight/2 - robot.h/2);
+	robot.speed = 20;
+
     while (!WindowShouldClose()) {
         BeginDrawing();
 
 		ball.Update();
 		player.Update();
+		robot.Update(ball.y);
 
 		ClearBackground(BLACK);
 		ball.Draw();
-		DrawRectangle((screenWidth - 20 - 10), (screenHeight/2 - 50), 20, 100, WHITE);
 		player.Draw();
+		robot.Draw();
         EndDrawing();
     }
     
