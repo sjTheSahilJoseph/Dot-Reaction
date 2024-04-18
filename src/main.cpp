@@ -1,8 +1,8 @@
 #include <raylib.h>
 
-#define COLOR1 CLITERAL(Color) { 255, 255, 255, 255 }
-#define COLOR2 CLITERAL(Color) { 0, 0, 0, 255 }
-#define COLOR3 CLITERAL(Color) { 255, 0, 0, 255 }
+#define COLOR1 CLITERAL(Color) { 255, 68, 0, 255 }
+#define COLOR2 CLITERAL(Color) { 0, 255, 0, 255 }
+#define COLOR3 CLITERAL(Color) { 255, 100, 0, 255 }
 
 class Ball {
 	public:
@@ -133,7 +133,7 @@ int main(int argc, char const* argv[]) {
 
 	ball.w = 10;
 	ball.h = 10;
-	ball.c = COLOR1;
+	ball.c = COLOR2;
 	ball.x = (float)screenWidth/2;
 	ball.y = (float)screenHeight/2;
 	ball.speed_x = 7;
