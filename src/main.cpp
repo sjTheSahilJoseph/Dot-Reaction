@@ -1,5 +1,9 @@
 #include <raylib.h>
 
+#define COLOR1 CLITERAL(Color) { 255, 255, 255, 255 }
+#define COLOR2 CLITERAL(Color) { 0, 0, 0, 255 }
+#define COLOR3 CLITERAL(Color) { 255, 0, 0, 255 }
+
 class Ball {
 	public:
 		float x;
@@ -8,9 +12,10 @@ class Ball {
 		float speed_y;
 		float w;
 		float h;
+		Color c;
 		
 		void Draw() {
-		DrawRectangle(x, y, w, h, WHITE);
+		DrawRectangle(x, y, w, h, c);
 		}
 
 		void Update() {
@@ -29,6 +34,9 @@ class Ball {
 
 class Player {
 	protected:
+		bool isMovingUp;
+		bool isMovingDown;
+
 		void LimitMovement() {
 			if (y <= 0) {
 				y = 0;
@@ -44,18 +52,33 @@ class Player {
 		float w;
 		float h;
 		int speed;
+		Color c;
+
+		Player() : isMovingUp(false), isMovingDown(false) {}
 
 		void Draw() {
-			DrawRectangle(x, y, w, h, WHITE);
+			DrawRectangle(x, y, w, h, c);
 		}
 
 		void Update() {
 			if (IsKeyDown(KEY_D) || IsKeyDown(KEY_UP)) {
-				y = y - speed;
+				y -= speed;
+				c = COLOR3;
+				isMovingUp = true;
+			} else {
+				isMovingUp = false;
 			}
 
 			if (IsKeyDown(KEY_F) || IsKeyDown(KEY_DOWN)) {
-				y = y + speed;
+				y += speed;
+				c = COLOR3;
+				isMovingDown = true;
+			} else {
+				isMovingDown = false;
+			}
+
+			if (!isMovingUp && !isMovingDown) {
+				c = COLOR1;
 			}
 
 			LimitMovement();
@@ -68,11 +91,25 @@ class Player2_Opponent : public Player {
 		void Update(float ball_y) {
 			if (IsKeyDown(KEY_K) || IsKeyDown(KEY_UP)) {
 				y = y - speed;
+				c = COLOR3;
+				isMovingUp = true;
+			} else {
+				isMovingUp = false;
 			}
+
 
 			if (IsKeyDown(KEY_J) || IsKeyDown(KEY_DOWN)) {
 				y = y + speed;
+				c = COLOR3;
+				isMovingDown = true;
+			} else {
+				isMovingDown = false;
 			}
+
+			if (!isMovingUp && !isMovingDown) {
+				c = COLOR1;
+			}
+
 
 			LimitMovement();
 		}
@@ -96,6 +133,7 @@ int main(int argc, char const* argv[]) {
 
 	ball.w = 10;
 	ball.h = 10;
+	ball.c = COLOR1;
 	ball.x = (float)screenWidth/2;
 	ball.y = (float)screenHeight/2;
 	ball.speed_x = 7;
@@ -103,12 +141,14 @@ int main(int argc, char const* argv[]) {
 
 	player.w = 20;
 	player.h = 100;
+	player.c = COLOR1;
 	player.x = 10;
 	player.y = (float)((float)screenHeight/2 - 50);
 	player.speed = 20;
     
 	player2.w = 20;
 	player2.h = 100;
+	player2.c = COLOR1;
 	player2.x = (screenWidth - 20 - 10);
 	player2.y = (float)((float)screenHeight/2 - player2.h/2);
 	player2.speed = 20;
