@@ -66,11 +66,11 @@ class Player2_Opponent : public Player {
 
 	public:
 		void Update(float ball_y) {
-			if (IsKeyDown(KEY_K)) {
+			if (IsKeyDown(KEY_K) || IsKeyDown(KEY_UP)) {
 				y = y - speed;
 			}
 
-			if (IsKeyDown(KEY_J)) {
+			if (IsKeyDown(KEY_J) || IsKeyDown(KEY_DOWN)) {
 				y = y + speed;
 			}
 
