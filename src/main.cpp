@@ -1,8 +1,9 @@
 #include <raylib.h>
 
-#define COLOR1 CLITERAL(Color) { 255, 68, 0, 255 }
-#define COLOR2 CLITERAL(Color) { 0, 255, 0, 255 }
-#define COLOR3 CLITERAL(Color) { 255, 100, 0, 255 }
+#define COLOR1 Color { 255, 68, 0, 255 }
+#define COLOR2 Color { 0, 255, 0, 255 }
+#define COLOR3 Color { 255, 100, 0, 255 }
+#define COLOR_BG Color {64, 22, 0, 255}
 
 class Ball {
 	public:
@@ -172,7 +173,7 @@ int main(int argc, char const* argv[]) {
 			ball.speed_x *= -1;
 		}
 
-		ClearBackground(BLACK);
+		ClearBackground(COLOR_BG);
 		ball.Draw();
 		player.Draw();
 		player2.Draw();
