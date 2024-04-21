@@ -35,7 +35,7 @@ int main(int argc, char const* argv[]) {
 	player2.w = 20;
 	player2.h = 200;
 	player2.c = COLOR1;
-	player2.x = (screenWidth - 20 - 10);
+	player2.x = (screenWidth - player2.w - 10);
 	player2.y = (float)((float)screenHeight/2 - player2.h/2);
 	player2.speed = .99f;
 
