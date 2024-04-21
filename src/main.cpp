@@ -15,6 +15,8 @@ Player2_Opponent player2;
 
 Score score1;
 
+Line l1;
+
 int main(int argc, char const* argv[]) {
     InitWindow(screenWidth, screenHeight, "SJ's Dot-Reaction");
 
@@ -48,6 +50,12 @@ int main(int argc, char const* argv[]) {
 	score1.x = (((float)screenWidth/2) - score1.r/2);
 	score1.y = 10;
 
+	l1.start_x = ((float)screenWidth/2);
+	l1.end_x = ((float)screenWidth/2);
+	l1.start_y = (0);
+	l1.end_y = ((float)screenHeight);
+	l1.c = COLOR1;
+
     while (!WindowShouldClose()) {
         BeginDrawing();
 
@@ -72,6 +80,7 @@ int main(int argc, char const* argv[]) {
 		player.Draw();
 		player2.Draw();
 		score1.Draw();
+		l1.Draw();
         EndDrawing();
     }
     
