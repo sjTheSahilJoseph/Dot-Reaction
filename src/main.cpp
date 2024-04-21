@@ -1,120 +1,9 @@
-#include <raylib.h>
+#include "main.h"
 
-#define COLOR1 Color { 255, 68, 0, 255 }
-#define COLOR2 Color { 0, 255, 0, 255 }
-#define COLOR3 Color { 255, 100, 0, 255 }
-#define COLOR_BG Color {64, 22, 0, 255}
-
-class Ball {
-	public:
-		float x;
-		float y;
-		float speed_x;
-		float speed_y;
-		float w;
-		float h;
-		Color c;
-		
-		void Draw() {
-		DrawRectangle(x, y, w, h, c);
-		}
-
-		void Update() {
-			x += speed_x;
-			y += speed_y;
-
-			float radius = (float) (w+h) / 4;
-			if (y + radius >= GetScreenHeight() || y - radius <= 0 ) {
-				speed_y *= -1;
-			}
-			if (x + radius >= GetScreenWidth() || x - radius <= 0 ) {
-				speed_x *= -1;
-			}
-		}
-};
-
-class Player {
-	protected:
-		bool isMovingUp;
-		bool isMovingDown;
-
-		void LimitMovement() {
-			if (y <= 0) {
-				y = 0;
-			}
-
-			if (y + h >= GetScreenHeight()) {
-				y = GetScreenHeight() - h;
-			}
-		}
-	public:
-		float x;
-		float y;
-		float w;
-		float h;
-		int speed;
-		Color c;
-
-		Player() : isMovingUp(false), isMovingDown(false) {}
-
-		void Draw() {
-			DrawRectangle(x, y, w, h, c);
-		}
-
-		void Update() {
-			if (IsKeyDown(KEY_D) || IsKeyDown(KEY_UP)) {
-				y -= speed;
-				c = COLOR3;
-				isMovingUp = true;
-			} else {
-				isMovingUp = false;
-			}
-
-			if (IsKeyDown(KEY_F) || IsKeyDown(KEY_DOWN)) {
-				y += speed;
-				c = COLOR3;
-				isMovingDown = true;
-			} else {
-				isMovingDown = false;
-			}
-
-			if (!isMovingUp && !isMovingDown) {
-				c = COLOR1;
-			}
-
-			LimitMovement();
-		}
-};
-
-class Player2_Opponent : public Player {
-
-	public:
-		void Update(float ball_y) {
-			if (IsKeyDown(KEY_K) || IsKeyDown(KEY_UP)) {
-				y = y - speed;
-				c = COLOR3;
-				isMovingUp = true;
-			} else {
-				isMovingUp = false;
-			}
-
-
-			if (IsKeyDown(KEY_J) || IsKeyDown(KEY_DOWN)) {
-				y = y + speed;
-				c = COLOR3;
-				isMovingDown = true;
-			} else {
-				isMovingDown = false;
-			}
-
-			if (!isMovingUp && !isMovingDown) {
-				c = COLOR1;
-			}
-
-
-			LimitMovement();
-		}
-};
+// Screen Size
+const int screenWidth = 1280;
+const int screenHeight = 800;
+const int FPS = 1000;
 
 Ball ball;
 
@@ -122,37 +11,33 @@ Player player;
 
 Player2_Opponent player2;
 
-int main(int argc, char const* argv[]) {
-	// Screen Size
-	const int screenWidth = 1280;
-    const int screenHeight = 800;
 
+int main(int argc, char const* argv[]) {
     InitWindow(screenWidth, screenHeight, "SJ's Dot-Reaction");
 
-	// FPS
-	SetTargetFPS(60);
+	SetTargetFPS(FPS);
 
 	ball.w = 10;
 	ball.h = 10;
 	ball.c = COLOR2;
 	ball.x = (float)screenWidth/2;
 	ball.y = (float)screenHeight/2;
-	ball.speed_x = 7;
-	ball.speed_y = 7;
+	ball.speed_x = .60;
+	ball.speed_y = .60;
 
 	player.w = 20;
 	player.h = 100;
 	player.c = COLOR1;
 	player.x = 10;
 	player.y = (float)((float)screenHeight/2 - 50);
-	player.speed = 20;
+	player.speed = .9;
     
 	player2.w = 20;
 	player2.h = 100;
 	player2.c = COLOR1;
 	player2.x = (screenWidth - 20 - 10);
 	player2.y = (float)((float)screenHeight/2 - player2.h/2);
-	player2.speed = 20;
+	player2.speed = .9;
 
     while (!WindowShouldClose()) {
         BeginDrawing();
