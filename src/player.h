@@ -50,6 +50,26 @@ class Player {
 				c = COLOR1;
 			}
 
+			if (IsKeyDown(KEY_A)) {
+				if (h<10) {
+					h = 11;
+				}
+				if (h>501) {
+					h = 500;
+				}
+				h++;
+			}
+
+			if (IsKeyDown(KEY_E)) {
+				if (h<10) {
+					h = 11;
+				}
+				if (h>501) {
+					h = 500;
+				}
+				h--;
+			}
+
 			LimitMovement();
 		}
 };
@@ -79,6 +99,25 @@ class Player2_Opponent : public Player {
 				c = COLOR1;
 			}
 
+			if (IsKeyDown(KEY_A)) {
+				if (h<10) {
+					h = 11;
+				}
+				if (h>501) {
+					h = 500;
+				}
+				h++;
+			}
+
+			if (IsKeyDown(KEY_E)) {
+				if (h<10) {
+					h = 11;
+				}
+				if (h>501) {
+					h = 500;
+				}
+				h--;
+			}
 
 			LimitMovement();
 		}
