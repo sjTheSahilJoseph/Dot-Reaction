@@ -56,9 +56,6 @@ int main(int argc, char const* argv[]) {
 	l1.end_y = ((float)screenHeight);
 	l1.c = COLOR1D;
 
-	Rectangle ballRect = { ball.x, ball.y, ball.w, ball.h };
-	Rectangle playerRect = { player.x, player.y, player.w, player.h };
-	Rectangle player2Rect = { player2.x, player2.y, player2.w, player2.h };
 
     while (!WindowShouldClose()) {
         BeginDrawing();
@@ -67,6 +64,9 @@ int main(int argc, char const* argv[]) {
 		player.Update();
 		player2.Update(ball.y);
 
+		Rectangle ballRect = { ball.x, ball.y, ball.w, ball.h };
+		Rectangle playerRect = { player.x, player.y, player.w, player.h };
+		Rectangle player2Rect = { player2.x, player2.y, player2.w, player2.h };
 
 		if (CheckCollisionRecs(ballRect, playerRect)) {
 			ball.speed_x *= -1;
