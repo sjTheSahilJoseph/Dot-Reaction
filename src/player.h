@@ -57,7 +57,7 @@ class Player {
 				if (h>501) {
 					h = 500;
 				}
-				h++;
+				h += .2;
 			}
 
 			if (IsKeyDown(KEY_E)) {
@@ -67,9 +67,27 @@ class Player {
 				if (h>501) {
 					h = 500;
 				}
-				h--;
+				h -= .2;
 			}
 
+			if (IsKeyDown(KEY_F)) {
+				if (w<10) {
+					w = 11;
+				}
+				if (w>31) {
+					w = 30;
+				}
+				w += .2;
+			}
+			if (IsKeyDown(KEY_B)) {
+				if (w<10) {
+					w = 11;
+				}
+				if (w>31) {
+					w = 30;
+				}
+				w -= .2;
+			}
 			LimitMovement();
 		}
 };
@@ -106,7 +124,7 @@ class Player2_Opponent : public Player {
 				if (h>501) {
 					h = 500;
 				}
-				h++;
+				h += .2;
 			}
 
 			if (IsKeyDown(KEY_E)) {
@@ -116,7 +134,26 @@ class Player2_Opponent : public Player {
 				if (h>501) {
 					h = 500;
 				}
-				h--;
+				h -= .2;
+			}
+
+			if (IsKeyDown(KEY_F)) {
+				if (w<10) {
+					w = 11;
+				}
+				if (w>31) {
+					w = 30;
+				}
+				w += .2;
+			}
+			if (IsKeyDown(KEY_B)) {
+				if (w<10) {
+					w = 11;
+				}
+				if (w>31) {
+					w = 30;
+				}
+				w -= .2;
 			}
 
 			LimitMovement();
