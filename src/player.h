@@ -30,7 +30,7 @@ class Player {
 		}
 
 		void Update() {
-			if (IsKeyDown(KEY_D) || IsKeyDown(KEY_UP)) {
+			if (IsKeyDown(KEY_D) || IsKeyDown(KEY_UP) || IsMouseButtonDown(MOUSE_BUTTON_RIGHT)) {
 				y -= speed;
 				c = COLOR3;
 				isMovingUp = true;
@@ -38,7 +38,7 @@ class Player {
 				isMovingUp = false;
 			}
 
-			if (IsKeyDown(KEY_F) || IsKeyDown(KEY_DOWN)) {
+			if (IsKeyDown(KEY_F) || IsKeyDown(KEY_DOWN) || IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
 				y += speed;
 				c = COLOR3;
 				isMovingDown = true;
@@ -58,7 +58,7 @@ class Player2_Opponent : public Player {
 
 	public:
 		void Update(float ball_y) {
-			if (IsKeyDown(KEY_K) || IsKeyDown(KEY_UP)) {
+			if (IsKeyDown(KEY_K) || IsKeyDown(KEY_UP) || IsMouseButtonDown(MOUSE_BUTTON_RIGHT)) {
 				y = y - speed;
 				c = COLOR3;
 				isMovingUp = true;
@@ -67,7 +67,7 @@ class Player2_Opponent : public Player {
 			}
 
 
-			if (IsKeyDown(KEY_J) || IsKeyDown(KEY_DOWN)) {
+			if (IsKeyDown(KEY_J) || IsKeyDown(KEY_DOWN) || IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
 				y = y + speed;
 				c = COLOR3;
 				isMovingDown = true;
