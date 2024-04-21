@@ -54,7 +54,7 @@ int main(int argc, char const* argv[]) {
 	l1.end_x = ((float)screenWidth/2);
 	l1.start_y = (0);
 	l1.end_y = ((float)screenHeight);
-	l1.c = COLOR1;
+	l1.c = COLOR1D;
 
     while (!WindowShouldClose()) {
         BeginDrawing();
