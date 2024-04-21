@@ -10,8 +10,7 @@ class Score {
 		char const* t;
 		
 		void Draw() {
-			DrawText(t, x, y, 20, c);
-			DrawFPS(x+20, y+20);
+			DrawText(t, x, y, 50, c);
 		}
 
 		void Update() {
