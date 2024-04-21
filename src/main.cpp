@@ -5,12 +5,15 @@ const int screenWidth = 1280;
 const int screenHeight = 800;
 const int FPS = 1000;
 
+char player_1_score[] = "0";
+
 Ball ball;
 
 Player player;
 
 Player2_Opponent player2;
 
+Score score1;
 
 int main(int argc, char const* argv[]) {
     InitWindow(screenWidth, screenHeight, "SJ's Dot-Reaction");
@@ -39,6 +42,11 @@ int main(int argc, char const* argv[]) {
 	player2.y = (float)((float)screenHeight/2 - player2.h/2);
 	player2.speed = .99f;
 
+	score1.t = player_1_score;
+	score1.c = COLOR1;
+	score1.x = 200;
+	score1.y = 10;
+
     while (!WindowShouldClose()) {
         BeginDrawing();
 
@@ -62,6 +70,7 @@ int main(int argc, char const* argv[]) {
 		ball.Draw();
 		player.Draw();
 		player2.Draw();
+		score1.Draw();
         EndDrawing();
     }
     
