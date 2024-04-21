@@ -14,6 +14,7 @@ Player player;
 Player2_Opponent player2;
 
 Score score1;
+Score score2;
 
 int main(int argc, char const* argv[]) {
     InitWindow(screenWidth, screenHeight, "SJ's Dot-Reaction");
@@ -47,6 +48,11 @@ int main(int argc, char const* argv[]) {
 	score1.x = 200;
 	score1.y = 10;
 
+	score2.t = player_1_score;
+	score2.c = COLOR1;
+	score2.x = screenWidth - 200;
+	score2.y = 10;
+
     while (!WindowShouldClose()) {
         BeginDrawing();
 
@@ -71,6 +77,7 @@ int main(int argc, char const* argv[]) {
 		player.Draw();
 		player2.Draw();
 		score1.Draw();
+		score2.Draw();
         EndDrawing();
     }
     
