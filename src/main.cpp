@@ -22,22 +22,22 @@ int main(int argc, char const* argv[]) {
 	ball.c = COLOR2;
 	ball.x = (float)screenWidth/2;
 	ball.y = (float)screenHeight/2;
-	ball.speed_x = .60;
-	ball.speed_y = .60;
+	ball.speed_x = .50;
+	ball.speed_y = .50;
 
 	player.w = 20;
-	player.h = 100;
+	player.h = 200;
 	player.c = COLOR1;
 	player.x = 10;
 	player.y = (float)((float)screenHeight/2 - 50);
-	player.speed = .9;
+	player.speed = .99f;
     
 	player2.w = 20;
-	player2.h = 100;
+	player2.h = 200;
 	player2.c = COLOR1;
 	player2.x = (screenWidth - 20 - 10);
 	player2.y = (float)((float)screenHeight/2 - player2.h/2);
-	player2.speed = .9;
+	player2.speed = .99f;
 
     while (!WindowShouldClose()) {
         BeginDrawing();
